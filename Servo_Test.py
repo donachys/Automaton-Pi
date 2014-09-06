@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-from Adafruit_PWM_Servo_Driver import PWM
+from Adafruit.Adafruit_PWM_Servo_Driver import PWM
 import time
 
 # ===========================================================================
