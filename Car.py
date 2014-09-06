@@ -10,7 +10,7 @@ class states:
     
 class Car:
 
-    STOPPEDTICK = 400
+    STOPPEDTICK = 402
     minForward = 420
     maxForward = 550
     minReverse = 380
@@ -19,30 +19,48 @@ class Car:
     pwm = PWM(0x40, debug=True)
     pwm.setPWMFreq(60)
     motorchannel = 0
+    ready = True
 
+#########################################
+# spd = a number from 1-100 representing
+# percentage of forward speed
+#########################################
     def forward(self, spd):
-        tick = ((spd/100) * (maxForward - minForward))+minForward
-        if(not state == states.REVERSE):
+        tick = int(((spd/100.00) * (self.maxForward - self.minForward))+self.minForward)
+        print("FORWARD >> %d ticks" % tick)
+        if(not self.state == states.REVERSE):
             state = states.FORWARD
-            self.pwm.setPWM(motorchannel, 0, tick)
-        else
+            self.pwm.setPWM(self.motorchannel, 0, tick)
+        else:
             neutral()
             print('tried to move forward while state was REVERSE')
             forward(spd)
-        
+#########################################
+# spd = a number from 1-100 representing
+# percentage of reverse speed
+#########################################        
     def reverse(self, spd):
-        tick = ((spd/100) * (minReverse = maxReverse))-minReverse
-        if(not state == states.FORWARD):
+        print(abs(spd))
+        tick = int(self.minReverse-((abs(spd)/100.00) * (self.minReverse - self.maxReverse)))
+        print("REVERSE >> %d ticks" % tick)
+        if(not self.state == states.FORWARD):
             state = states.REVERSE
-            self.pwm.setPWM(motorchannel, 0, tick)
-        else
+            self.pwm.setPWM(self.motorchannel, 0, tick)
+        else:
             print('tried to move reverse while state was FORWARD')
             neutral()
             reverse(spd)
-            
+#######################
+# Should stop the car
+#######################
     def neutral(self):
+        self.ready = False
         state = states.STOPPED
-        self.pwm.setPWM(motorchannel, 0, STOPPEDTICK)
+        self.pwm.setPWM(self.motorchannel, 0, self.STOPPEDTICK)
+        #print(">>>START SLEEP 1")
+        #time.sleep(10)
+        #print("<<<END SLEEP 1")
+        #self.ready = True
 
       
         
