@@ -7,7 +7,7 @@ forward = False
 backward = False
 moveLeft = False
 moveRight = False
-pera = 0
+motorVal = 0
 
 FPS = 30 # frames per second to update the screen
 WINWIDTH = 640 # width of the program's window, in pixels
@@ -20,6 +20,7 @@ pygame.display.set_caption('Automaton-Pi')
 BASICFONT = pygame.font.Font('freesansbold.ttf', 32)
 
 def terminate():
+    mycar.straight()
     myCar.neutral()
     pygame.quit()
     sys.exit()
@@ -32,15 +33,15 @@ while (1):
 
             elif event.type == KEYDOWN:
                 if event.key in (K_UP, K_w):
-                    if(pera < 0):
-                        pera = 0
+                    if(motorVal < 0):
+                        motorVal = 0
                     else:
-                        pera += 10
+                        motorVal += 10
                 elif event.key in (K_DOWN, K_s):
-                    if(pera > 0):
-                        pera = 0
+                    if(motorVal > 0):
+                        motorVal = 0
                     else:          
-                        pera -= 10
+                        motorVal -= 10
                 elif event.key in (K_LEFT, K_a):
                     moveLeft = True
                 elif event.key in (K_RIGHT, K_d):
@@ -48,25 +49,32 @@ while (1):
                 elif event.key == K_ESCAPE:
                     terminate()
 
-        if(pera > 0):
+        if(motorVal > 0):
             forward = True
             backward = False
             neutral = False
-        elif(pera < 0):
+        elif(motorVal < 0):
             backward = True
             forward = False
             neutral = False
-        elif(pera == 0):
+        elif(motorVal == 0):
             neutral = True
             backward = False
             forward = False
 
         if (forward): 
-            myCar.forward(pera)
-        if (backward):
-            myCar.reverse(pera)
-        if (neutral):
+            myCar.forward(motorVal)
+        elif (backward):
+            myCar.reverse(motorVal)
+        elif (neutral):
             myCar.neutral()
-        print "Pera: %d" % pera
+        print "motorVal: %d" % motorVal
+
+        if(moveRight):
+            myCar.right(50)
+        elif(moveLeft):
+            myCar.left(50)
+        else:
+            myCar.straight()
     else:
         print("myCar not READY")
