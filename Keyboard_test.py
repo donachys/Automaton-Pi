@@ -1,6 +1,8 @@
 import random, sys, time, math, pygame
 from pygame.locals import *
-
+def terminate():
+    pygame.quit()
+    sys.exit()
 
 for event in pygame.event.get(): # event handling loop
     if event.type == QUIT:
