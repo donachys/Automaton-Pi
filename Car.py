@@ -21,8 +21,8 @@ class Car:
     state = states.STOPPED
     pwm = PWM(0x40, debug=True)
     pwm.setPWMFreq(60)
-    motorchannel = 0
-    servochannel = 1
+    motorchannel = 9
+    servochannel = 8
     ready = True #is the motor/esc ready?
 
 #########################################
@@ -72,7 +72,6 @@ class Car:
     def left(self, amt):
         tick = int((self.servoMax - self.servoCenter) * (amt/100.00))
         self.pwm.setPWM(self.servochannel, 0, tick)
->>>>>>> e478951501366de098a2ee52e39cb100d792d1c8
 
     def right(self, amt):
         tick = int((self.servoCenter - self.servoMin) * (amt/100.00))
