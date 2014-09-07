@@ -60,7 +60,7 @@ class Car:
         #print(">>>START SLEEP 1")
         #time.sleep(10)
         #print("<<<END SLEEP 1")
-        #self.ready = True
+        self.ready = True
 
       
         
