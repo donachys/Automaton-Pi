@@ -19,7 +19,7 @@ class Car:
     servoMax = 515
     servoCenter = int((servoMax-servoMin)/2.0)+servoMin
     state = states.STOPPED
-    pwm = PWM(0x40, debug=True)
+    pwm = PWM(0x40, debug=False)
     pwm.setPWMFreq(60)
     motorchannel = 9
     servochannel = 8

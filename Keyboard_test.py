@@ -1,6 +1,5 @@
-import random, sys, time, math, pygame
-from Car import Car
-from pygame.locals import *
+import random, sys, time, math, pygame from Car import Car from
+pygame.locals import *
 
 myCar = Car()
 forward = False
@@ -61,11 +60,14 @@ while (1):
             backward = False
             forward = False
 
-        if (forward): 
+        if (forward):
+            print "calling forward: %d" % motorVal
             myCar.forward(motorVal)
         elif (backward):
+            print "calling reverse: %d" % motorVal
             myCar.reverse(motorVal)
         elif (neutral):
+            "calling neutral"
             myCar.neutral()
         print "motorVal: %d" % motorVal
 
