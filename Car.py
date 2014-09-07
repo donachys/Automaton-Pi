@@ -15,11 +15,15 @@ class Car:
     maxForward = 550
     minReverse = 380
     maxReverse = 250
+    servoMin = 385
+    servoMax = 515
+    servoCenter = int((servoMax-servoMin)/2.0)+servoMin
     state = states.STOPPED
     pwm = PWM(0x40, debug=True)
     pwm.setPWMFreq(60)
     motorchannel = 0
-    ready = True
+    servochannel = 1
+    ready = True #is the motor/esc ready?
 
 #########################################
 # spd = a number from 1-100 representing
@@ -62,5 +66,17 @@ class Car:
         #print("<<<END SLEEP 1")
         self.ready = True
 
-      
-        
+#########################
+# steer the car
+#########################
+    def left(self, amt):
+        tick = int((self.servoMax - self.servoCenter) * (amt/100.00))
+        self.pwm.setPWM(self.servochannel, 0, tick)
+>>>>>>> e478951501366de098a2ee52e39cb100d792d1c8
+
+    def right(self, amt):
+        tick = int((self.servoCenter - self.servoMin) * (amt/100.00))
+        self.pwm.setPWM(self.servochannel, 0, tick)
+
+    def straight(self):
+        se.fpwm.setPWM(self.servochannel, 0, self.servoCenter)
