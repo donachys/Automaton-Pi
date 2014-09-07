@@ -20,7 +20,7 @@ pygame.display.set_caption('Automaton-Pi')
 BASICFONT = pygame.font.Font('freesansbold.ttf', 32)
 
 def terminate():
-    mycar.straight()
+    myCar.straight()
     myCar.neutral()
     pygame.quit()
     sys.exit()
@@ -48,7 +48,6 @@ while (1):
                     moveRight = True
                 elif event.key == K_ESCAPE:
                     terminate()
-
         if(motorVal > 0):
             forward = True
             backward = False
@@ -70,11 +69,21 @@ while (1):
             myCar.neutral()
         print "motorVal: %d" % motorVal
 
-        if(moveRight):
+        if(moveRight and moveLeft):
+            print "calling straight"
+            myCar.straight()
+            moveRight = False
+            moveLeft = False
+        elif(moveRight):
+            moveLeft = False
+            print "calling right"
             myCar.right(50)
         elif(moveLeft):
+            moveRight = False
+            print "calling left"
             myCar.left(50)
         else:
+            print "calling straight"
             myCar.straight()
     else:
         print("myCar not READY")

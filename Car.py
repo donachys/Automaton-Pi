@@ -70,12 +70,14 @@ class Car:
 # steer the car
 #########################
     def left(self, amt):
-        tick = int((self.servoMax - self.servoCenter) * (amt/100.00))
+        tick = int((self.servoMax - self.servoCenter) * (amt/100.00) + self.servoCenter)
+        print "<<<<<LEFT tick: %d" % tick
         self.pwm.setPWM(self.servochannel, 0, tick)
 
     def right(self, amt):
-        tick = int((self.servoCenter - self.servoMin) * (amt/100.00))
+        tick = int(self.servoCenter -(self.servoCenter - self.servoMin) * (amt/100.00))
+        print ">>>>>RIGHT tick: %d" % tick
         self.pwm.setPWM(self.servochannel, 0, tick)
 
     def straight(self):
-        se.fpwm.setPWM(self.servochannel, 0, self.servoCenter)
+        self.pwm.setPWM(self.servochannel, 0, self.servoCenter)
