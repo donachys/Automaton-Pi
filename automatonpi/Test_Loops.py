@@ -1,6 +1,6 @@
-#!/usr/bin/python
+#!/usr/bin/env python2
 
-from Adafruit.Adafruit_PWM_Servo_Driver import PWM
+from packages.adafruit.Adafruit_PWM_Servo_Driver import PWM
 import time
 
 # ===========================================================================
@@ -29,5 +29,5 @@ time.sleep(1)
 for x in range(388, 220, -5):
     pwm.setPWM(0,0,x)
     print(x)
-    time.sleep(0.25)  
+    time.sleep(0.25)
 pwm.setPWM(0,0,0)

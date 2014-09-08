@@ -1,5 +1,10 @@
-import random, sys, time, math, pygame from Car import Car from
-pygame.locals import *
+import math
+import random
+import sys
+import time
+import pygame
+from Car import Car
+from pygame.locals import *
 
 myCar = Car()
 forward = False
@@ -39,7 +44,7 @@ while (1):
                 elif event.key in (K_DOWN, K_s):
                     if(motorVal > 0):
                         motorVal = 0
-                    else:          
+                    else:
                         motorVal -= 10
                 elif event.key in (K_LEFT, K_a):
                     moveLeft = True
