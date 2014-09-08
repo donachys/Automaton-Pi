@@ -9,5 +9,6 @@ setup(name='Automaton Pi',
       author='Shaun Donachy, Ljiljana Zigic, Mack Stump',
       author_email=('donachys@gmail.com, zigicljiljana@gmail.com, '
                     'mack.stump@gmail.com'),
-      packages=['automatonpi', 'automatonpi.adafruit'],
-      license='GPLv3')
+      packages=['automatonpi', 'automatonpi.packages.adafruit'],
+      license='GPLv3',
+      scripts=['bin/automatonpi'])
