@@ -1,13 +1,13 @@
-#!/usr/bin/python
+#!/usr/bin/env python2
 
-from Adafruit.Adafruit_PWM_Servo_Driver import PWM
+from packages.adafruit.Adafruit_PWM_Servo_Driver import PWM
 import time
 
 class states:
     FORWARD = 0
     STOPPED = 1
     REVERSE = 2
-    
+
 class Car:
 
     STOPPEDTICK = 402
@@ -42,7 +42,7 @@ class Car:
 #########################################
 # spd = a number from 1-100 representing
 # percentage of reverse speed
-#########################################        
+#########################################
     def reverse(self, spd):
         print(abs(spd))
         tick = int(self.minReverse-((abs(spd)/100.00) * (self.minReverse - self.maxReverse)))
