@@ -17,9 +17,9 @@ class TestApp:
 	pygame.display.set_caption('Automaton-Pi')
 	BASICFONT = pygame.font.Font('freesansbold.ttf', 32)
 	def __init__(self):
-		self.state = NeutralState(0, app)
+		self.state = NeutralState(0, self)
 
-	def run():
+	def run(self):
 		while True:
 			for event in pygame.event.get(): # event handling loop
 				self.state.handleInput(event)
