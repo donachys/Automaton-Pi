@@ -25,6 +25,8 @@ class TestApp:
 				self.state.handleInput(event)
 			self.state.update()
 
-if __name__ == "__main__":
+def main():
 	app = TestApp()
 	app.run()
+#if __name__ == "__main__":
+	

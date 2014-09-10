@@ -1,6 +1,6 @@
 #!/usr/bin/env python2
 
-from packages.adafruit.Adafruit_PWM_Servo_Driver import PWM
+from automatonpi.packages.adafruit.Adafruit_PWM_Servo_Driver import PWM
 import time
 
 class CarState():
