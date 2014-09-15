@@ -97,7 +97,7 @@ class NeutralState(CarState):
         self.time_in_state = pygame.time.get_ticks()
         self.sent_stop = False
     def update(self):
-        if not self.sent_stop:
+        #if not self.sent_stop:
             self.pwm.setPWM(self.MOTORCHANNEL, 0, self.STOPPEDTICK)
         #super(CarState,self).steer(self.steer_val)
         self.steer(self.steer_val)
@@ -106,12 +106,14 @@ class NeutralState(CarState):
         if event.type == KEYDOWN:
             if event.key in (K_UP, K_w):
                 #change state to forward
-                if (pygame.time.get_ticks() - self.time_in_state > 2500):
-                    self.app.state = ForwardState(10, self.steer_val, self.app)
+                #if (pygame.time.get_ticks() - self.time_in_state > 2500):
+                #    self.app.state = ForwardState(10, self.steer_val, self.app)
+                self.app.state = ForwardState(10, self.steer_val, self.app)
             elif event.key in (K_DOWN, K_s):
                 #change state to reverse
-                if (pygame.time.get_ticks() - self.time_in_state > 2500):
-                    self.app.state = ReverseState(10,self.steer_val, self.app)
+                #if (pygame.time.get_ticks() - self.time_in_state > 2500):
+                #    self.app.state = ReverseState(10,self.steer_val, self.app)
+                self.app.state = ReverseState(10,self.steer_val, self.app)
             elif event.key in (K_LEFT, K_a):
                 self.steer_val = -70
             elif event.key in (K_RIGHT, K_d):
