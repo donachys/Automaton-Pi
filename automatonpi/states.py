@@ -97,7 +97,7 @@ class NeutralState(CarState):
         self.time_in_state = pygame.time.get_ticks()
         self.sent_stop = False
     def update(self):
-        #if not self.sent_stop:
+        if not self.sent_stop:
             self.pwm.setPWM(self.MOTORCHANNEL, 0, self.STOPPEDTICK)
         #super(CarState,self).steer(self.steer_val)
         self.steer(self.steer_val)
