@@ -12,14 +12,7 @@ class TestApp:
 	#WINHEIGHT = 480 # height in pixels
 	#HALF_WINWIDTH = int(WINWIDTH / 2)
 	#HALF_WINHEIGHT = int(WINHEIGHT / 2)
-	pygame.init()
-	pygame.joystick.init()
-	joysticks = [pygame.joystick.Joystick(x) for x in range(pygame.joystick.get_count())]
-	print joysticks
-	joystick = pygame.joystick.Joystick(0)
-	joystick.init()
-	pygame.event.set_allowed(None)
-	pygame.event.set_allowed([pygame.QUIT, pygame.JOYAXISMOTION, pygame.JOYBALLMOTION, pygame.JOYBUTTONDOWN, pygame.JOYBUTTONUP, pygame.JOYHATMOTION]) # Possible joystick actions: JOYAXISMOTION JOYBALLMOTION JOYBUTTONDOWN JOYBUTTONUP JOYHATMOTION
+	
 	#DISPLAYSURF = pygame.display.set_mode((WINWIDTH, WINHEIGHT))
 	#pygame.display.set_caption('Automaton-Pi')
 	#BASICFONT = pygame.font.Font('freesansbold.ttf', 32)
@@ -27,6 +20,14 @@ class TestApp:
 		self.state = NeutralState(0, self)
 
 	def run(self):
+		pygame.init()
+		pygame.joystick.init()
+		joysticks = [pygame.joystick.Joystick(x) for x in range(pygame.joystick.get_count())]
+		print joysticks
+		joystick = pygame.joystick.Joystick(0)
+		joystick.init()
+		pygame.event.set_allowed(None)
+		pygame.event.set_allowed([pygame.QUIT, pygame.JOYAXISMOTION, pygame.JOYBALLMOTION, pygame.JOYBUTTONDOWN, pygame.JOYBUTTONUP, pygame.JOYHATMOTION]) # Possible joystick actions: JOYAXISMOTION JOYBALLMOTION JOYBUTTONDOWN JOYBUTTONUP JOYHATMOTION
 		while True:
 			for event in pygame.event.get(): # event handling loop
 				self.state.handleInput(event)
