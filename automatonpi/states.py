@@ -59,12 +59,12 @@ class ForwardState(CarState):
 				self.steer_val = 70
 		if event.type == JOYAXISMOTION and event.axis <= 3:
 			if event.axis == 0:
-				if event.val <= 0:
+				if event.value <= 0:
 					self.force = NeutralState(self.steer_val, self.app)
-				elif event.val >= 0:
-					self.app.state = int(100 * event.val)
+				elif event.value >= 0:
+					self.app.state = int(100 * event.value)
 			if event.axis == 3:
-				self.steer_val = int(100 * abs(event.val))
+				self.steer_val = int(100 * abs(event.value))
 
 class ReverseState(CarState):
 	"""docstring for ReverseState"""
@@ -97,12 +97,12 @@ class ReverseState(CarState):
 				self.steer_val = 70
 		if event.type == JOYAXISMOTION and event.axis <= 3:
 			if event.axis == 0:
-				if event.val < 0:
-					self.force = int(100 * abs(event.val))
-				elif event.val >= 0:
+				if event.value < 0:
+					self.force = int(100 * abs(event.value))
+				elif event.value >= 0:
 					self.app.state = NeutralState(self.steer_val, self.app)
 			if event.axis == 3:
-				self.steer_val = int(100 * abs(event.val))
+				self.steer_val = int(100 * abs(event.value))
 
 
 class NeutralState(CarState):
@@ -137,9 +137,9 @@ class NeutralState(CarState):
 				self.steer_val = 70
 		if event.type == JOYAXISMOTION and event.axis <= 3:
 			if event.axis == 0:
-				if event.val < 0:
-					self.app.state = ReverseState(int(100*abs(event.val)), self.steer_val, self.app)
-				elif event.val >= 0:
-					self.app.state = ForwardState(int(100*event.val), self.steer_val, self.app)
+				if event.value < 0:
+					self.app.state = ReverseState(int(100*abs(event.value)), self.steer_val, self.app)
+				elif event.value >= 0:
+					self.app.state = ForwardState(int(100*event.value), self.steer_val, self.app)
 			if event.axis == 3:
-				self.steer_val = int(100 * abs(event.val))
+				self.steer_val = int(100 * abs(event.value))
