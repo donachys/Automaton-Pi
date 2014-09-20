@@ -29,7 +29,7 @@ class TestApp:
 		pygame.event.set_allowed(None)
 		pygame.event.set_allowed([pygame.QUIT, pygame.JOYAXISMOTION]) # Possible joystick actions: JOYAXISMOTION JOYBALLMOTION JOYBUTTONDOWN JOYBUTTONUP JOYHATMOTION
 		while True:
-			if pygame.joystick.get_count() > 1:
+			if pygame.joystick.get_count() >= 1:
 				for event in pygame.event.get(): # event handling loop
 					self.state.handleInput(event)
 					#name = joystick.get_name()
