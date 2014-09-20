@@ -60,9 +60,9 @@ class ForwardState(CarState):
 		if event.type == JOYAXISMOTION and event.axis <= 3:
 			if event.axis == 0:
 				if event.value <= 0:
-					self.force = NeutralState(self.steer_val, self.app)
+					self.app.state = NeutralState(self.steer_val, self.app)
 				elif event.value >= 0:
-					self.app.state = int(100 * event.value)
+					self.force = int(100 * event.value)
 			if event.axis == 3:
 				self.steer_val = int(100 * abs(event.value))
 
