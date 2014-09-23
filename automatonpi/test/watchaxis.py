@@ -20,15 +20,14 @@ def run_event_loop(joystick):
     pygame.event.set_allowed([JOYAXISMOTION, JOYBALLMOTION,
                               JOYBUTTONDOWN, JOYBUTTONUP,
                               JOYHATMOTION])
-    ignored_axes = [16, 17, 18, 19]
-    saved_val = None
+    watched_axes = {16: None, 17: None, 18: None, 19: None}
 
     while True:
         for event in pygame.event.get():
-            if event.type == JOYAXISMOTION and event.dict['axis'] in ignored_axes:
-                if saved_val != event.dict['value']:
-                    saved_val = event.dict['value']
-                print(event)
+            if event.type == JOYAXISMOTION and event.dict['axis'] in watched_axes.keys():
+                if watched_axes[event.dict['axis']] != event.dict['value']:
+                    watched_axes[event.dict['axis']] = event.dict['value']
+                    print(event)
         time.sleep(0.01)
 
 
